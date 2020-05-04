@@ -5,7 +5,6 @@ public class Dispatcher {
 		F function = new Function();
 		try {
 		int[] x = execute(function, 2);
-		x.toString();
 		} catch (InterruptedException e) {
 		}
 	}
@@ -14,6 +13,7 @@ public class Dispatcher {
 		Result result = new Result(n);
 		for (int i = 0; i < n; i++) {
 			DispatcherThread thread = new DispatcherThread(f, n, result);
+			thread.start();
 		}
 		return result.getResult();
 	}
