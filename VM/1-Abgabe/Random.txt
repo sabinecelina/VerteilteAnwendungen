@@ -1,0 +1,44 @@
+package mywebapp;
+
+import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.*;
+
+public class Random extends HttpServlet {
+
+	/**
+	 * Comment for <code>serialVersionUID</code>
+	 */
+	
+	private static final long serialVersionUID = 5120019871958287397L;
+
+	public void service(HttpServletRequest request, HttpServletResponse response)
+			throws IOException, ServletException {
+		String inputA = request.getParameter("a");
+		String inputB = request.getParameter("b");
+		int a = 0;
+		int b = 0;
+		try{
+		 a = Integer.parseInt(request.getParameter("a"));
+		 b = Integer.parseInt(request.getParameter("b"));
+		} catch (Exception e){
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/invalidvalues.html");
+			dispatcher.forward(request,response);
+		}
+		if(a>b){
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/invalidvalues.html");
+			dispatcher.forward(request,response);
+		}
+		response.setContentType("text/html");
+		response.getWriter().println(generateRandomNumber(a, b));
+	}
+
+	public static double generateRandomNumber(int min, int max) {
+		System.out.println("Random value in double from " + min + " to " + max
+				+ ":");
+		double random_double = Math.random() * (max - min + 1) + min;
+		return random_double;
+	}
+}

@@ -1,0 +1,10 @@
+</head>
+<body>
+<h1>Random Number</h1>
+<form action="Random" method="post">
+	a = <input type="text" name="a" size=6> <br/>
+	b = <input type="text" name="b" size=6> <br/>
+	<input type="submit" value="start">
+</form>
+</body>
+</html>
